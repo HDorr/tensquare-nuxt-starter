@@ -68,6 +68,7 @@
           </div>
         </form>
       </div>
+      <div id="weixin"></div>
     </div>
 
   </div>
@@ -82,6 +83,8 @@ import {setUser} from '@/utils/auth'
           script:[
               {src:' http://g.alicdn.com/sj/lib/jquery/dist/jquery.min.js'},
               {src:'http://g.alicdn.com/sj/dpl/1.5.1/js/sui.min.js'},
+              //微信登录引用js,显示二维码
+              {src:'http://res.wx.qq.com/connect/zh_CN/htmledition/js/wxLogin.js'}
           ],
           link:[
               // {rel:'stylesheet',href:'https://cdn.bootcss.com/social-share.js/1.0.16/css/share.min.css'}
@@ -121,8 +124,10 @@ import {setUser} from '@/utils/auth'
                 if (res.data.flag) {
                     //成功,保存用户信息到Cookies中
                     setUser(res.data.data.token,res.data.data.name,res.data.data.avatar)
-                    location.href='/'
+                    // 跳转到主页
+                    location.href='/manager'
                 }else {
+                //    提示用户登录失败,并重置账户密码
                 this.$message({
                     message:res.data.message,
                     type:'error'
@@ -132,6 +137,15 @@ import {setUser} from '@/utils/auth'
                 }
             })
         }
+    },
+    mounted(){
+        // //  微信登录js
+        // var obj = new WxLogin({
+        //     id: "weixin",
+        //     appid: "wx3bdb1192c22883f3",
+        //     scope: "snsapi_login",
+        //     redirect_uri: "http://note.java.itcast.cn/weixinlogin"
+        // });
     }
   }
 

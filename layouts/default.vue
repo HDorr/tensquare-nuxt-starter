@@ -26,12 +26,13 @@
                 <input type="text" placeholder="输入关键词..."/>
                 <span class="btn-search fa fa-search"></span>
               </form>
-              <div class="sui-nav pull-right info side" v-if="user.name===undefined">
+<!--   这里一定不要使用v-if,那样服务端渲染和客户端渲染会冲突啊啊啊啊啊-->
+              <div class="sui-nav pull-right info side" v-show="user.name===undefined">
                 <router-link to="/login" class="gologin">登录</router-link>
               </div>
-              <div class="sui-nav pull-right info" v-if="user.name!==undefined">
+              <div class="sui-nav pull-right info" v-show="user.name!==undefined">
                 <li>
-                  <a href="~/assets/other-notice.html" target="_blank" class="notice">
+                  <a href="/manager"  class="notice">
                     {{user.name}}
                   </a>
                 </li>
@@ -55,7 +56,7 @@
                   </ul>
                 </li>
                 <li>
-                  <a href="~/assets/person-homepage.html" target="_blank" class="homego">
+                  <a href="/manager" class="homego">
                     <img :src="user.avatar" :alt="user.name" style="width: 39px;height: 39px"/>
                   </a>
                 </li>
@@ -154,7 +155,7 @@
                 user: {}
             }
         },
-        created() {
+        mounted() {
             this.user = getUser();
         },
         methods:{
