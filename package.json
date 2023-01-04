@@ -17,7 +17,7 @@
     "element-ui": "^2.4.11",
     "jquery": "^3.4.1",
     "js-cookie": "^2.2.1",
-    "nuxt": "^2.0.0",
+    "nuxt": "^2.15.8",
     "vue-infinite-scroll": "^2.0.2",
     "vue-quill-editor": "^3.0.6"
   },
